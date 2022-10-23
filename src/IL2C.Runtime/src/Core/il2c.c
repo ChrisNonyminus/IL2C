@@ -38,7 +38,7 @@ extern IL2C_TLS_INDEX g_TlsIndex__;
 // "il2c_initializer_count" will compare the local type counter,
 // the translated code have to initialize first using static members if count value different.
 static interlock_t g_InitializerCount = 0;
-const interlock_t* il2c_initializer_count__ = &g_InitializerCount;
+interlock_t* il2c_initializer_count__ = &g_InitializerCount;
 
 extern void il2c_collect_for_final_shutdown__(void);
 

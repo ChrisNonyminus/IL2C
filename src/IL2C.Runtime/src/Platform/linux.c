@@ -91,4 +91,63 @@ bool il2c_readline(wchar_t* buffer, int32_t length)
     return false;
 }
 
+
+
 #endif
+
+///////////////////////////////////////////////////
+// 3DS
+#if defined(__3DS__)
+#include "other.h"
+#include <stdio.h>
+
+void il2c_initialize(void)
+{
+    gfxInitDefault();
+    //consoleDebugInit(debugDevice_SVC);
+    consoleInit(GFX_BOTTOM, NULL);
+
+    il2c_initialize__();
+}
+
+void il2c_shutdown(void)
+{
+    il2c_shutdown__();
+
+    gfxExit();
+}
+
+void il2c_sleep(uint32_t milliseconds)
+{
+    svcSleepThread(milliseconds * 1000 * 1000);
+}
+
+#if defined(IL2C_USE_RUNTIME_DEBUG_LOG)
+void il2c_runtime_debug_log(const wchar_t* message)
+{
+
+}
+#endif
+
+void il2c_write(const wchar_t* s)
+{
+    il2c_assert(s != NULL);
+    printf("%ls", s);
+}
+
+void il2c_writeline(const wchar_t* s)
+{
+    il2c_assert(s != NULL);
+    printf("%ls\n", s);
+}
+
+bool il2c_readline(wchar_t* buffer, int32_t length)
+{
+    il2c_assert(buffer != NULL);
+    il2c_assert(length >= 1);
+    // stdio input not supported on 3ds
+    return false;
+}
+
+#endif
+///////////////////////////////////////////////////

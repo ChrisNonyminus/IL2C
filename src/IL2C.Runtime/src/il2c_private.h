@@ -40,6 +40,7 @@ typedef volatile long interlock_t;
 #include "Platform/wdm.h"
 #include "Platform/linux.h"
 #include "Platform/arduino.h"
+#include "Platform/other.h"
 
 #if defined(IL2C_USE_RUNTIME_DEBUG_LOG)
 extern void il2c_runtime_debug_log(const wchar_t* message);
